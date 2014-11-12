@@ -32,13 +32,27 @@
 
 (defun rspec-focus-toggle ()
   (interactive)
-  "Toggles to 'focus' tag on an rspec test."
+  "Toggles the 'focus' tag on an rspec test."
   (save-excursion
     (rspec-beginning-of-example)
-    (end-of-line)
-    (re-search-backward "\"\\|'")
-    (forward-char)
-    (insert ", focus: true")))
+    (if (rspec-focus--tag-on-line)
+        (rspec-focus--remove-tag-on-line)
+      (progn
+        (end-of-line)
+        (re-search-backward "\"\\|'")
+        (forward-char)
+        (insert ", focus: true")))))
+
+(defun rspec-focus--tag-on-line ()
+  (save-excursion
+    (beginning-of-line)
+    (search-forward ", focus: true" (line-end-position) t)))
+
+(defun rspec-focus--remove-tag-on-line ()
+  (save-excursion
+    (beginning-of-line)
+    (search-forward ", focus: true" (line-end-position))
+    (delete-region (match-beginning 0) (match-end 0))))
 
 (provide 'rspec-focus)
 ;;; rspec-focus.el ends here

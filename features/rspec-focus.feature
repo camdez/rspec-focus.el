@@ -36,3 +36,18 @@ Feature: Toggle focus tag
     And I place the cursor before "Bowling.new"
     And I invoke rspec-focus-toggle
     Then I should see "it 'returns 0 for all gutter game', focus: true do"
+
+  Scenario: Existing focus tag
+    Given I insert:
+      """
+      describe Bowling do
+        it 'returns 0 for all gutter game', focus: true do
+          bowling = Bowling.new
+          20.times { bowling.hit(0) }
+          bowling.score.should eq(0)
+        end
+      end
+      """
+    And I place the cursor before "Bowling.new"
+    And I invoke rspec-focus-toggle
+    Then I should see "it 'returns 0 for all gutter game' do"
