@@ -31,7 +31,7 @@
 (require 'rspec-mode)
 
 (defvar rspec-focus--tag-regexp
-  ",\\s-+focus:\\s-*true")
+  ",\\s-*\\(focus:\\|:focus\\s-*=>\\)\\s-*true")
 
 (defvar rspec-focus--new-tag
   ", focus: true")
