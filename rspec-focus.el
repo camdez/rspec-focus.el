@@ -6,7 +6,7 @@
 ;; Keywords: languages
 ;; Version: 0.1.0
 ;; Homepage: http://github.com/camdez
-;; Package-Requires: (rspec-mode)
+;; Package-Requires: ((rspec-mode "1.11"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
