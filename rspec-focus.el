@@ -34,7 +34,8 @@
   ",\\s-*\\(focus:\\|:focus\\s-*=>\\)\\s-*true")
 
 (defvar rspec-focus--new-tag
-  ", focus: true")
+  ", focus: true"
+  "Format for newly inserted focus tags.")
 
 (defun rspec-focus-toggle ()
   "Toggle the 'focus' tag on an rspec test."
