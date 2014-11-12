@@ -3,10 +3,12 @@ Feature: Toggle focus tag
   In order to quickly focus on a certain test
   I want to be able to toggle the 'focus' tag with a keystoke
 
-  Scenario: No focus tag
+  Background:
     Given I am in buffer "foo_spec.rb"
     And the buffer is empty
-    And I insert:
+
+  Scenario: No focus tag
+    Given I insert:
       """
       describe Bowling do
         it "returns 0 for all gutter game" do
@@ -21,9 +23,7 @@ Feature: Toggle focus tag
     Then I should see "it "returns 0 for all gutter game", focus: true do"
 
   Scenario: No focus tag (single quotes)
-    Given I am in buffer "foo_spec.rb"
-    And the buffer is empty
-    And I insert:
+    Given I insert:
       """
       describe Bowling do
         it 'returns 0 for all gutter game' do
