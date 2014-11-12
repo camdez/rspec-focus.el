@@ -37,11 +37,11 @@
   ", focus: true")
 
 (defun rspec-focus-toggle ()
+  "Toggle the 'focus' tag on an rspec test."
   (interactive)
-  "Toggles the 'focus' tag on an rspec test."
   (save-excursion
     (rspec-beginning-of-example)
-    (if (rspec-focus--tag-on-line)
+    (if (rspec-focus--tag-on-line-p)
         (rspec-focus--remove-tag-on-line)
       (progn
         (end-of-line)
@@ -49,12 +49,15 @@
         (forward-char)
         (insert rspec-focus--new-tag)))))
 
-(defun rspec-focus--tag-on-line ()
+(defun rspec-focus--tag-on-line-p ()
+  "Return true if there is a focus tag on this line."
   (save-excursion
     (beginning-of-line)
     (re-search-forward rspec-focus--tag-regexp (line-end-position) t)))
 
 (defun rspec-focus--remove-tag-on-line ()
+  "Remove focus tag on this line.
+Assumes on exists."
   (save-excursion
     (beginning-of-line)
     (re-search-forward rspec-focus--tag-regexp (line-end-position))
